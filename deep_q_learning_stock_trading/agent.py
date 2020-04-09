@@ -43,14 +43,14 @@ class Agent:
 
     def act(self, state, price_data):
         if not self.is_eval and np.random.rand() <= self.epsilon:
-            #ToDo: select a random action
+            # select a random action
             action = random.randrange(self.action_size)
         else:
             # Predict what would be the possible action for a given state
-            options = self.model.predict(state) #ToDo: predict q-value of the current state
+            options = self.model.predict(state)
 
             # pick the action with highest probability
-            action = np.argmax(options[0]) #ToDo: select the q-value with highest value
+            action = np.argmax(options[0])
 
         bought_price = None
         if action == 0:  # Do nothing!
@@ -79,13 +79,13 @@ class Agent:
             else:
                 # updated q_value = reward + gamma * [max_a' Q(s',a')]
                 next_q_values = self.model.predict(next_state)[0] # this is Q(s', a') for all possible a'
-                target = reward + self.gamma * np.amax(next_q_values) # ToDo: update target q_value using Bellman equation
+                target = reward + self.gamma * np.amax(next_q_values) # update target q_value using Bellman equation
 
-            predicted_target = self.model.predict(state) #ToDo: predict q_value for current state
+            predicted_target = self.model.predict(state) # predict q_value for current state
             # Update the action values
-            predicted_target[0][action] = target # ToDo: Substitue target q_value to the predicted value
+            predicted_target[0][action] = target # Substitue target q_value to the predicted value
             # Train the model with updated action values
-            self.model.fit(state, predicted_target, epochs=1, verbose=0) #ToDo: train the model with new q_value
+            self.model.fit(state, predicted_target, epochs=1, verbose=0) # train the model with new q_value
 
         # Make epsilon smaller over time, so do more exploitation than exploration
         if self.epsilon > self.epsilon_min:

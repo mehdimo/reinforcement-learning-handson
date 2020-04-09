@@ -19,13 +19,13 @@ def main():
     agent = Agent(window_size, True, model_name)
     market = Market(window_size, stock_name)
 
-    state, price_data = market.reset() #ToDo: Start from an initial state
+    state, price_data = market.reset() # Start from an initial state
 
     for t in range(market.last_data_index):
-        action, bought_price = agent.act(state, price_data) # ToDo: Get action for the current state
+        action, bought_price = agent.act(state, price_data) # Get action for the current state
 
         # Check the action to get reward and observe next state
-        next_state, next_price_data, reward, done = market.get_next_state_reward(action, bought_price) #ToDo: get next state
+        next_state, next_price_data, reward, done = market.get_next_state_reward(action, bought_price)
 
         state = next_state
         price_data = next_price_data

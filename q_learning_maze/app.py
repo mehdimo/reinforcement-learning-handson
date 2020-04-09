@@ -40,15 +40,15 @@ def run_experiment():
 
             # Q-learning chooses action based on observation
             # we convert observation to str since we want to use them as index for our DataFrame.
-            action = q_learning_agent.choose_action(str(observation)) # ToDo: call choose_action() method from the agent QLearningTable instance
+            action = q_learning_agent.choose_action(str(observation))
 
             # RL takes action and gets next observation and reward
-            observation_, reward, done = env.get_state_reward(action) # ToDo: call get_state_reward() method from Maze environment instance
+            observation_, reward, done = env.get_state_reward(action)
             moves +=1
 
             # RL learn from the above transition,
             # Update the Q value for the given tuple
-            q_learning_agent.learn(str(observation), action, reward, str(observation_))# ToDo: call learn method from Q-learning agent instance, passing (s, a, r, s') tuple
+            q_learning_agent.learn(str(observation), action, reward, str(observation_))
 
             # consider the next observation
             observation = observation_
@@ -83,10 +83,10 @@ def plot_reward_movements():
 if __name__ == "__main__":
 
     # Craete maze environment
-    env = Maze() #ToDo: instanciate Maze class
+    env = Maze()
 
     # Create Q-learning agent
-    q_learning_agent = QLearningTable(actions=list(range(env.n_actions))) #ToDo: instanciate QLearningTable class
+    q_learning_agent = QLearningTable(actions=list(range(env.n_actions)))
 
     # Call run_experiment() function once after given time in milliseconds.
     env.window.after(10, run_experiment)

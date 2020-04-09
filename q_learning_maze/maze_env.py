@@ -29,7 +29,7 @@ class Maze():
         self.window = tk.Tk()
         self.window.title('maze with Q-Learning')
         self.window.geometry('{0}x{1}'.format(MAZE_W * UNIT, MAZE_H * UNIT))
-        self.action_space = ['u', 'd', 'l', 'r'] #ToDo: Fill the list with all possible actions
+        self.action_space = ['u', 'd', 'l', 'r'] # all possible actions
         self.n_actions = len(self.action_space)
         self.build_grid()
 
@@ -122,15 +122,18 @@ class Maze():
 
         # reward function
         if s_ == self.canvas.coords(self.oval):
-            reward = 1 #ToDo: this is our gold goal! Give it a positive reward
+            # our gold goal!
+            reward = 1
             done = True
             s_ = 'terminal'
         elif s_ in [self.canvas.coords(self.hell1), self.canvas.coords(self.hell2)]:
-            reward = -1 #ToDo: fall in a hole! Negative reward!
+            # fall in a hole!
+            reward = -1
             done = True
             s_ = 'terminal'
         else:
-            reward = 0 #ToDo: just moving around! no reward.
+            # just moving around!
+            reward = 0
             done = False
 
         return s_, reward, done

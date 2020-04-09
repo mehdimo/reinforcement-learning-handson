@@ -15,41 +15,42 @@ class QLearningTable:
         self.q_table = pd.DataFrame(columns=self.actions, dtype=np.float64)
 
     def choose_action(self, observation):
-        # ToDo: add this observation to the table
+        # add this observation to the table
         self.add_state(observation)
 
         # action selection based on greedy policy
         if np.random.uniform() < self.epsilon:
             # choose a random action
-            action = np.random.choice(self.actions) #ToDo: choose a random action number from the number of possible actions
+            action = np.random.choice(self.actions)
 
         else:
             # choose best action for the given observation
-            #ToDo:  1)find the records of current observation,
-            #       2)reindex the result data and
-            #       3)return the action with higherst value.
+
+            # 1)find the records of current observation,
             state_action = self.q_table.loc[observation, :]
+            # 2)reindex the result data and
             state_action = state_action.reindex(np.random.permutation(state_action.index)) # some actions have same value
+            # 3)return the action with highest value.
             action = state_action.idxmax()
         return action
 
     def learn(self, s, a, r, s_):
-        # ToDo: add the next observation (s_) to the table
+        # add the next observation (s_) to the table
         self.add_state(s_)
 
         # choose the best q-value for the given pair of (s, a); Q(s, a)
-        q_predict = self.q_table.loc[s, a] #ToDo: Lookup for the record s in column a
+        q_predict = self.q_table.loc[s, a] # Lookup for the record s in column a
 
         # check if the next state is a terminal state or not and get the expected q value
         if s_ != 'terminal':
             # next state is not terminal
-            # ToDo: approximate the expected future reward based on Bellman equation:
+            # approximate the expected future reward based on Bellman equation:
             # Q'() = r + gamma * [max_a' Q(s',a')]
             q_target = r + self.gamma * self.q_table.loc[s_, :].max()
         else:
             q_target = r  # next state is terminal
 
-        # ToDo: Update q-value  in the table
+        # Update q-value  in the table
         # Q(s, a) = Q(s, a) + learning_rate [r + gamma max_a' Q(s', a') - Q(s, a)]
         self.q_table.loc[s, a] += self.lr * (q_target - q_predict)
 

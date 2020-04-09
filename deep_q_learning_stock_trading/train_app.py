@@ -19,17 +19,16 @@ def main():
     for e in range(episode_count + 1):
         print("Episode " + str(e) + "/" + str(episode_count))
         agent.reset()
-        state, price_data = market.reset() #ToDo: get the initial state
+        state, price_data = market.reset() # get the initial state
 
         for t in range(market.last_data_index):
             # get the action of the agent
-            action, bought_price = agent.act(state, price_data) # ToDo: Call the act() method of the agent considering the current state
+            action, bought_price = agent.act(state, price_data)
 
             # get the next state of the stock
-            #ToDo: Get the next available state from market data
             next_state, next_price_data, reward, done = market.get_next_state_reward(action, bought_price)
 
-            #ToDo: add the transaction to the memory
+            # add the transaction to the memory
             agent.memory.append((state, action, reward, next_state, done))
             # learn from the history
             if len(agent.memory) > batch_size:
