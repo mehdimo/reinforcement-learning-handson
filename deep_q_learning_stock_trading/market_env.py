@@ -13,7 +13,7 @@ class Market:
 
         for line in lines[1:]:
             vals = line.split(",")
-            vec.append([float(vals[4]), float(vals[6])])
+            vec.append(float(vals[4]))
 
         return vec
 
