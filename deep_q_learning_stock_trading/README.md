@@ -17,10 +17,20 @@ S&P 500, 2011Q1. Profit of $92.84:
 
 ```
 mkdir models
-python train_app.py GSPC_10 5 30
+python train_app.py
 ```
+You may change the these parameters in train_app.py:
+<pre>window_size = 5
+episode_count = 30
+stock_name = "^GSPC_2011"
+</pre>
 
 Then when training finishes you can evaluate with the test dataset :
 ```
-python evaluate_app.py GSPC_2011-03 model_ep30
+python evaluate_app.py
 ```
+Change these variables in evaluate_app.py accordingly before running:
+<pre>
+stock_name = "GSPC_2011-03"
+model_name = "model_ep30"
+</pre>
