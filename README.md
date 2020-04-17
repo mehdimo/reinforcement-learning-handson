@@ -4,4 +4,4 @@ This repository consists of the source code of the following projects used in my
 
 1. [Maze Problem](./q_learning_maze)
 2. [Stock Trader](./deep_q_learning_stock_trading)
-
+3. [Stock Trader with multiple features](./deep_q_learning_stock_trading_multiple_features)
