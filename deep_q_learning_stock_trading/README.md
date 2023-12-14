@@ -15,6 +15,15 @@ S&P 500, 2011Q1. Profit of $92.84:
 
 ## Running the Code
 
+Create virtual env and install dependencies: 
+```
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+Make `models` folder and run the code:
+
 ```
 mkdir models
 python train_app.py

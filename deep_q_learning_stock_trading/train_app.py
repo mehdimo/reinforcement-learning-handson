@@ -45,7 +45,7 @@ def main():
         if e % 10 == 0:
             if not os.path.exists("models"):
                 os.mkdir("models")
-            agent.model.save("models/model_ep" + str(e))
+            agent.model.save("models/model_ep" + str(e), save_format="h5")
 
     end_time = time.time()
     training_time = round(end_time - start_time)
